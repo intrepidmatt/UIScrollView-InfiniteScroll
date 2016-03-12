@@ -87,9 +87,13 @@ override func viewDidLoad() {
 
 If you are using `insertSections` and `insertRowsAtIndexPaths` instead of `reloadData`, you need to force the tableView to update its `contentSize` before making the call to `finishInfiniteScroll()`:
 
+Objective-C:
+
 ```objc
 tableView.contentSize = [tableView sizeThatFits:CGSizeMake(tableView.bounds.size.width, CGFLOAT_MAX)];
 ```
+
+Swift:
 
 ```swift
 tableView.contentSize = tableView.sizeThatFits(CGSize(width: tableView.bounds.size.width, height: CGFloat.max))
