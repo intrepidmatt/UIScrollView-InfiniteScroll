@@ -83,6 +83,18 @@ override func viewDidLoad() {
 }
 ```
 
+#### Table view quirks
+
+If you are using `insertSections` and `insertRowsAtIndexPaths` instead of `reloadData`, you need to force the tableView to update its `contentSize` before making the call to `finishInfiniteScroll()`:
+
+```objc
+tableView.contentSize = [tableView sizeThatFits:CGSizeMake(tableView.bounds.size.width, CGFLOAT_MAX)];
+```
+
+```swift
+tableView.contentSize = tableView.sizeThatFits(CGSize(width: tableView.bounds.size.width, height: CGFloat.max))
+```
+
 #### Collection view quirks
 
 `UICollectionView#reloadData` causes contentOffset to reset. Please use `UICollectionView#performBatchUpdates` instead when possible.
